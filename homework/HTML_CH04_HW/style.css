@@ -1,0 +1,28 @@
+*{
+    padding: 3px;
+    margin: 3px;
+}
+h1 {
+    font-weight: bold;
+    font-style: italic;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px;
+    color: rgb(1, 1, 1);
+}
+ul > li:hover {
+    color: #FF0000;
+}
+.whatPokemon p{
+    color: yellow;
+    text-shadow: 1px 1px 2px red;
+}
+h2, h3{
+    text-transform: uppercase;
+    width: 25%;
+}
+
+h4{
+    color: rgba(1, 1, 1,1);
+    font: 20px Arial italic bold ;
+}
