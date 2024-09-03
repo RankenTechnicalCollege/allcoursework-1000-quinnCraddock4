@@ -1,0 +1,25 @@
+#wrapper{
+    width: fit-content;
+    margin: 0 auto;
+}
+h1{
+    border: 10px dashed rgb(68, 120, 200);
+    margin: 10;
+    padding: 10;
+}
+header{
+    background-image: linear-gradient(to bottom right, green, teal);
+    margin: 10;
+    padding: 10;
+}
+body{
+    background-image: linear-gradient(to bottom right, green, teal);
+    margin: 10;
+    padding: 10;
+}
+p{
+    height: 10%;
+    width: 50%;
+    margin: 10;
+    padding: 10;
+}
