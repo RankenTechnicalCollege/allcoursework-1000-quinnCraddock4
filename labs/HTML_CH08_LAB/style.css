@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+nav {
+    background-color: #333;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 10px 0;
+}
+
+.navbar-item {
+    margin: 0 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.navbar-item:hover {
+    text-decoration: underline;
+}
+
+/* Flexbox for Main Content */
+.content {
+    display: flex;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 25%;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+/* Main Section */
+main {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+#prodContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.productDiv {
+    width: 23%;
+    text-align: center;
+}
+
+.product-img {
+    width: 100%;
+    height: auto;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+}
+
+#main {
+    column-count: 3;  /* This creates 3 equal-width columns */
+    column-gap: 20px; /* Gap between columns */
+    padding: 10px;
+    background-color: #f0f0f0; /* Adjust to match the overall style */
+    border: 1px solid #ccc; /* Add border similar to the mockup */
+    margin-bottom: 20px; /* Add spacing from the elements below */
+}
+
+/* Media Queries */
+
+/* Mobile devices (max-width: 600px) */
+@media (max-width: 600px) {
+    nav {
+        text-align: left;
+    }
+
+    .navbar {
+        flex-direction: column;
+        padding: 0;
+        align-items: flex-start;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    main {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    #prodContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .productDiv {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Tablets and small desktops (min-width: 600px and max-width: 1200px) */
+@media (min-width: 600px) and (max-width: 1200px) {
+    nav {
+        text-align: center;
+    }
+
+    .navbar {
+        flex-direction: row;
+    }
+
+    .content {
+        flex-direction: row;
+    }
+
+    .sidebar {
+        width: 30%;
+    }
+
+    main {
+        width: 70%;
+    }
+}
+
+/* Large desktops (min-width: 1200px) */
+@media (min-width: 1200px) {
+    .content {
+        flex-direction: row-reverse; /* Sidebar to the right */
+    }
+
+    .sidebar {
+        width: 25%;
+    }
+
+    main {
+        width: 75%;
+    }
+
+    #prodContainer {
+        flex-direction: row;
+    }
+
+    .productDiv {
+        width: 23%;
+    }
+}
+
+/* Ultra-wide screens (min-width: 2500px) */
+@media (min-width: 2500px) {
+    .productDiv {
+        width: 18%;
+    }
+}
