@@ -1,0 +1,22 @@
+.jumbotron {
+    background-image: url('https://img1.wsimg.com/isteam/ip/bba0bff5-aa3b-42e3-b698-f5124f1f7503/blob-0004.png/:/rs=w:1240,h:620,cg:true,m/cr=w:1240,h:620');
+    color: #fff;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.menu-item {
+    background-color: #f8f9fa;
+}
+
+#color1 {
+    background-color: red;
+}
+#color2 {
+    background-color: aqua;
+}
+#color3 {
+    background-color: green;
+}
+#color4 {
+    background-color: yellow;
+}
