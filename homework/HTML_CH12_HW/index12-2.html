@@ -22,7 +22,7 @@
             background-color: yellow;
         }
 
-        tr:nth-child(even) {
+        tbody tr:nth-of-type(2n+1):not(:first-child) {
             background-color: yellow;
         }
     </style>
@@ -30,49 +30,58 @@
 
 <body>
     <div class="container">
+        <h1 class="text-center">HTML Table Example</h1>
         <table>
             <thead>
                 <tr>
-                    <th scope="col">Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Employee Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Years of service</th>
+                    <th scope="col">Years of Service</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Joel Murach</td>
+                    <td rowspan="3">Editorial</td>
+                    <td>Joel</td>
                     <td>joel@yahoo.com</td>
                     <td>22</td>
                 </tr>
                 <tr>
                     <td>Anne</td>
-                    <td>Anne@yahoo.com</td>
+                    <td>anne@yahoo.com</td>
                     <td>34</td>
                 </tr>
                 <tr>
-                    <td>Zak Rubalcab</td>
-                    <td>ZakRuvalcab@yahoo.com</td>
+                    <td>Zak</td>
+                    <td>zak@yahoo.com</td>
                     <td>4</td>
                 </tr>
                 <tr>
+                    <td rowspan="2">Marketing</td>
                     <td>Judy</td>
-                    <td>Judy@yahoo.com</td>
+                    <td>judy@yahoo.com</td>
                     <td>39</td>
                 </tr>
                 <tr>
-                    <td>Bethany lee</td>
-                    <td>Bethany@yahoo.com</td>
+                    <td>Bethany</td>
+                    <td>bethany@yahoo.com</td>
                     <td>10</td>
                 </tr>
                 <tr>
+                    <td rowspan="2">Customer Service</td>
                     <td>Kelly</td>
-                    <td>Kelly@yahoo.com</td>
+                    <td>kelly@yahoo.com</td>
                     <td>25</td>
                 </tr>
                 <tr>
-                    <td>Juilete</td>
-                    <td>Juilete@yahoo.com</td>
+                    <td>Juliette</td>
+                    <td>juliette@yahoo.com</td>
                     <td>11</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Total Years of Service</td>
+                    <td>105</td>
                 </tr>
             </tbody>
         </table>
