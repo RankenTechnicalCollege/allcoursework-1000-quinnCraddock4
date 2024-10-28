@@ -4,53 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: auto;
-        }
-
-        .form-group label {
-            font-weight: bold;
-        }
-
-        #totalCost {
-            color: green;
-            font-weight: bold;
-        }
-    </style>
+    <title>Drive Through Order</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="container mt-5">
-        <h1 class="mb-4">Order Calculator</h1>
-        <form id="orderForm">
+        <h1 class="text-center">Fast Food Drive Through</h1>
+        <form id="orderForm" class="mt-4">
             <div class="form-group">
-                <label for="itemPrice">Item Price ($):</label>
-                <input type="number" class="form-control" id="itemPrice" placeholder="Enter item price">
+                <label for="burgers">Number of Burgers ($1 each):</label>
+                <input type="number" class="form-control" id="burgers" min="0" value="0">
             </div>
             <div class="form-group">
-                <label for="quantity">Quantity:</label>
-                <input type="number" class="form-control" id="quantity" placeholder="Enter quantity">
+                <label for="fries">Number of Fries ($2 each):</label>
+                <input type="number" class="form-control" id="fries" min="0" value="0">
+            </div>
+            <div class="form-group">
+                <label for="sodas">Number of Sodas ($2.50 each):</label>
+                <input type="number" class="form-control" id="sodas" min="0" value="0">
             </div>
             <button type="button" class="btn btn-primary" id="btnClick">Calculate Total</button>
         </form>
         <div class="mt-4">
-            <h2 id="totalCost">Total Cost: $0.00</h2>
+            <h3 id="totalCost"></h3>
         </div>
     </div>
 
     <script>
         document.getElementById('btnClick').onclick = () => {
-            const itemPrice = parseFloat(document.getElementById('itemPrice').value);
-            const quantity = parseInt(document.getElementById('quantity').value);
-            const totalCost = itemPrice * quantity;
-            document.getElementById('totalCost').innerText = `Total Cost: $${totalCost.toFixed(2)}`;
+            const burgers = parseInt(document.getElementById('burgers').value) || 0;
+            const fries = parseInt(document.getElementById('fries').value) || 0;
+            const sodas = parseInt(document.getElementById('sodas').value) || 0;
+
+            const totalCost = (burgers * 1) + (fries * 2) + (sodas * 2.5);
+            document.getElementById('totalCost').innerHTML = `Total Cost: $${totalCost.toFixed(2)}`;
         };
     </script>
 </body>

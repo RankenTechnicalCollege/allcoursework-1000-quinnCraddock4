@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miles Per Gallon Calculator</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Miles Per Gallon Calculator</h1>
+        <label for="miles">Miles Driven:</label>
+        <input type="number" id="miles" placeholder="Enter miles driven">
+
+        <label for="gallons">Gallons of Gas Used:</label>
+        <input type="number" id="gallons" placeholder="Enter gallons of gas used">
+
+        <button onclick="calculateMPG()">Calculate MPG</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateMPG() {
+            const miles = parseFloat(document.getElementById('miles').value);
+            const gallons = parseFloat(document.getElementById('gallons').value);
+            if (isNaN(miles) || isNaN(gallons) || miles <= 0 || gallons <= 0) {
+                document.getElementById('result').textContent = 'Please enter valid numbers for both fields.';
+                return;
+            }
+            const mpg = miles / gallons;
+            document.getElementById('result').textContent = `Miles Per Gallon: ${mpg.toFixed(2)}`;
+        }
+    </script>
+</body>
+
+</html>

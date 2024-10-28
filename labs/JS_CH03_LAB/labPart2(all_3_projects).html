@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .tab-content {
+            padding: 20px;
+        }
+
+        .nav-bar {
+            display: flex;
+            background-color: #333;
+        }
+
+        .nav-bar a {
+            padding: 14px 20px;
+            display: block;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .nav-bar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-bar">
+        <a href="#project1" onclick="showTab('project1')">Project 3-1</a>
+        <a href="#project2" onclick="showTab('project2')">Project 3-2</a>
+        <a href="#project3" onclick="showTab('project3')">Project 3-3</a>
+    </div>
+
+    <div id="project1" class="tab tab-content">
+        <h2>Project 3-1: Average Calculation</h2>
+        <input type="text" id="num1" value="0">
+        <input type="text" id="num2" value="0">
+        <input type="text" id="num3" value="0">
+        <input type="text" id="num4" value="0">
+        <input type="text" id="num5" value="0">
+        <button onclick="calculateAverage()">Calculate Average</button>
+        <p id="averageResult"></p>
+    </div>
+
+    <div id="project2" class="tab tab-content">
+        <h2>Project 3-2: Shipping Calculation</h2>
+        <input type="text" id="purchasePrice" placeholder="Enter purchase price">
+        <button onclick="calculateShipping()">Calculate Shipping</button>
+    </div>
+
+    <div id="project3" class="tab tab-content">
+        <h2>Project 3-3: BMI Calculation</h2>
+        <input type="text" id="weight" placeholder="Enter weight in pounds">
+        <input type="text" id="height" placeholder="Enter height in inches">
+        <button onclick="calcBMI()">Calculate BMI</button>
+        <input type="text" id="bmiResult" readonly>
+    </div>
+
+    <script>
+        // this tabs thing was probably not worth the effort it is cool tho
+        function showTab(tabId) {
+            var tabs = document.getElementsByClassName('tab');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].style.display = 'none';
+            }
+            document.getElementById(tabId).style.display = 'block';
+        }
+
+        function calculateAverage() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            var num3 = parseFloat(document.getElementById('num3').value);
+            var num4 = parseFloat(document.getElementById('num4').value);
+            var num5 = parseFloat(document.getElementById('num5').value);
+            var average = (num1 + num2 + num3 + num4 + num5) / 5;
+            document.getElementById('averageResult').innerText = 'Average: ' + average;
+        }
+
+        function calculateShipping() {
+            var price = parseFloat(document.getElementById('purchasePrice').value);
+            var shipping;
+            if (price <= 25.00) {
+                shipping = 1.50;
+            } else {
+                shipping = price * 10 / 100;
+            }
+            var totalCost = price + shipping;
+            alert('Total cost including shipping: $' + totalCost.toFixed(2));
+        }
+
+        function calcBMI() {
+            var weight = parseFloat(document.getElementById('weight').value);
+            var height = parseFloat(document.getElementById('height').value);
+            var bmi = (weight * 703) / (height * height);
+            document.getElementById('bmiResult').value = bmi.toFixed(2);
+        }
+
+        showTab('project1');
+    </script>
+</body>
+
+</html>

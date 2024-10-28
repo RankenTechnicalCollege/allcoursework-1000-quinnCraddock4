@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Scores App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function promptScores() {
+            let scores = [];
+            let resultElement = document.getElementById("result");
+            resultElement.innerHTML = "";
+
+            while (true) {
+                let input = prompt("Enter a test score (0-100) or type 999 to finish:");
+                let score = parseInt(input);
+
+                if (score === 999) {
+                    break;
+                }
+
+                if (isNaN(score) || score < 0 || score > 100) {
+                    alert("Score must be from 0 through 100. Try again.");
+                } else {
+                    scores.push(score);
+                    resultElement.innerHTML += `<p>Score ${scores.length} = ${score}</p>`;
+                }
+            }
+
+            if (scores.length > 0) {
+                calculateAverage(scores);
+            }
+        }
+
+        function calculateAverage(scores) {
+            const total = scores.reduce((acc, score) => acc + score, 0);
+            const average = total / scores.length;
+            document.getElementById('average').innerText = `Average Score: ${average.toFixed(2)}`;
+        }
+
+        window.onload = promptScores;
+    </script>
+</head>
+
+<body>
+    <h1>Test Scores App</h1>
+    <div id="result" class="result"></div>
+    <p id="average"></p>
+</body>
+
+</html>
