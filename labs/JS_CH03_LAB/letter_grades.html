@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Grades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function getLetterGrade(grade) {
+            if (grade >= 88 && grade <= 100) {
+                return 'A';
+            } else if (grade >= 80 && grade <= 87) {
+                return 'B';
+            } else if (grade >= 68 && grade <= 79) {
+                return 'C';
+            } else if (grade >= 60 && grade <= 67) {
+                return 'D';
+            } else if (grade >= 0 && grade < 60) {
+                return 'F';
+            } else {
+                return 'Invalid';
+            }
+        }
+
+        function promptGrades() {
+            let errorElement = document.getElementById("error");
+            let resultElement = document.getElementById("result");
+            errorElement.textContent = "";
+            resultElement.innerHTML = "";
+
+            while (true) {
+                let input = prompt("Enter a grade (0-100) or type 999 to exit:");
+                let grade = parseInt(input);
+
+                if (grade === 999) {
+                    break;
+                }
+
+                if (isNaN(grade) || grade < 0 || grade > 100) {
+                    errorElement.textContent = "Grade must be from 0 through 100. Try again.";
+                } else {
+                    let letterGrade = getLetterGrade(grade);
+                    resultElement.innerHTML += `<p>Grade ${grade} = ${letterGrade}</p>`;
+                }
+            }
+        }
+
+        window.onload = promptGrades;
+    </script>
+</head>
+
+<body>
+    <h1>Letter Grades</h1>
+    <p id="error" class="error"></p>
+    <div id="result" class="result"></div>
+</body>
+
+</html>

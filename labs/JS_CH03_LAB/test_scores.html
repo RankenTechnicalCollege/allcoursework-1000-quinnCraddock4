@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Scores Program</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>The Test Scores App</h1>
+    <p>Enter test scores</p>
+    <p>Enter 'end' to end input</p>
+    <hr>
+    <form id="scoreForm">
+        <label for="scoreInput">Enter test score:</label>
+        <input type="text" id="scoreInput">
+        <button type="button" onclick="addScore()">Add Score</button>
+        <button type="button" onclick="endInput()">End Input</button>
+        <p id="error" class="error"></p>
+    </form>
+    <div id="result" class="result"></div>
+
+    <script>
+        let scores = [];
+
+        function addScore() {
+            let input = document.getElementById("scoreInput").value;
+            let errorElement = document.getElementById("error");
+            errorElement.textContent = "";
+
+            if (input.toLowerCase() === 'end') {
+                endInput();
+                return;
+            }
+
+            let score = parseInt(input);
+            if (isNaN(score) || score < 0 || score > 100) {
+                errorElement.textContent = "Test score must be from 0 through 100. Try again.";
+            } else {
+                scores.push(score);
+                document.getElementById("scoreInput").value = "";
+                displayScores();
+            }
+        }
+
+        function endInput() {
+            displayScores();
+            displayAverage();
+            displayHighestScore();
+        }
+
+        function displayScores() {
+            let resultElement = document.getElementById("result");
+            resultElement.innerHTML = "<h3>Test Scores:</h3><ul>";
+            scores.forEach(score => {
+                resultElement.innerHTML += `<li>${score}</li>`;
+            });
+            resultElement.innerHTML += "</ul>";
+        }
+
+        function displayAverage() {
+            let resultElement = document.getElementById("result");
+            let sum = scores.reduce((a, b) => a + b, 0);
+            let average = (sum / scores.length).toFixed(2);
+            resultElement.innerHTML += `<h3>Average Score: ${average}</h3>`;
+        }
+
+        function displayHighestScore() {
+            let resultElement = document.getElementById("result");
+            let highestScore = Math.max(...scores);
+            resultElement.innerHTML += `<h3>Highest Score: ${highestScore}</h3>`;
+        }
+    </script>
+</body>
+
+</html>

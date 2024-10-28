@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function calculateFutureValue() {
+            var investment = parseFloat(document.getElementById("investment").value);
+            var rate = parseFloat(document.getElementById("rate").value);
+            var years = parseInt(document.getElementById("years").value);
+
+            document.getElementById("investment_error").textContent = "";
+            document.getElementById("rate_error").textContent = "";
+            document.getElementById("years_error").textContent = "";
+            document.getElementById("result").innerHTML = "";
+
+            var isValid = true;
+
+            if (isNaN(investment) || investment === "") {
+                document.getElementById("investment_error").textContent = "This field is required and must be numeric.";
+                isValid = false;
+            } else if (investment <= 0 || investment > 100000) {
+                document.getElementById("investment_error").textContent = "Must be > 0 and <= 100000.";
+                isValid = false;
+            }
+
+            if (isNaN(rate) || rate === "") {
+                document.getElementById("rate_error").textContent = "This field is required and must be numeric.";
+                isValid = false;
+            } else if (rate <= 0 || rate > 100) {
+                document.getElementById("rate_error").textContent = "Must be > 0 and <= 100.";
+                isValid = false;
+            }
+
+            if (isNaN(years) || years === "") {
+                document.getElementById("years_error").textContent = "This field is required and must be numeric.";
+                isValid = false;
+            } else if (years <= 0 || years > 50) {
+                document.getElementById("years_error").textContent = "Must be > 0 and <= 50.";
+                isValid = false;
+            }
+
+            if (isValid) {
+                var result = "<h3>Future Value and Interest Over " + years + " Years</h3><ul>";
+                var previousValue = investment;
+                for (var i = 1; i <= years; i++) {
+                    var futureValue = investment * Math.pow(1 + rate / 100, i);
+                    var interest = futureValue - previousValue;
+                    result += "<li>Year " + i + ": Future Value: $" + futureValue.toFixed(2) + ", Interest: $" + interest.toFixed(2) + "</li>";
+                    previousValue = futureValue;
+                }
+                result += "</ul>";
+                document.getElementById("result").innerHTML = result;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Investment Calculator</h1>
+    <form onsubmit="event.preventDefault(); calculateFutureValue();">
+        <label for="investment">Investment Amount:</label>
+        <input type="text" id="investment" name="investment">
+        <span id="investment_error" class="error"></span><br><br>
+
+        <label for="rate">Annual Interest Rate (%):</label>
+        <input type="text" id="rate" name="rate">
+        <span id="rate_error" class="error"></span><br><br>
+
+        <label for="years">Number of Years:</label>
+        <input type="text" id="years" name="years">
+        <span id="years_error" class="error"></span><br><br>
+
+        <input type="submit" value="Calculate">
+    </form>
+
+    <div id="result" class="result"></div>
+</body>
+
+</html>

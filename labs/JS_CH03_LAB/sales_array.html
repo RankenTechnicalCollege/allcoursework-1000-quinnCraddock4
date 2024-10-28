@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Data</title>
+</head>
+
+<body>
+    <h1>Sales Data</h1>
+
+    <h2>Sales by Quarter</h2>
+    <div id="sales-by-quarter"></div>
+
+    <h2>Sales by Region</h2>
+    <div id="sales-by-region"></div>
+
+    <h2>Total Sales</h2>
+    <div id="total-sales"></div>
+
+    <script>
+        const region1 = [1540, 1130, 1580, 1105];
+        const region2 = [2010, 1168, 2305, 4102];
+        const region3 = [2450, 1847, 2710, 2391];
+        const region4 = [1845, 1491, 1284, 1575];
+        const region5 = [2120, 1767, 1599, 3888];
+
+        const regions = [region1, region2, region3, region4, region5];
+
+        let quarterlySales = [0, 0, 0, 0];
+        regions.forEach(region => {
+            region.forEach((sale, index) => {
+                quarterlySales[index] += sale;
+            });
+        });
+
+        const salesByQuarterDiv = document.getElementById('sales-by-quarter');
+        quarterlySales.forEach((sale, index) => {
+            salesByQuarterDiv.innerHTML += `<div>Quarter ${index + 1}: $${sale}</div>`;
+        });
+
+        let regionalSales = regions.map(region => region.reduce((a, b) => a + b, 0));
+
+        const salesByRegionDiv = document.getElementById('sales-by-region');
+        regionalSales.forEach((sale, index) => {
+            salesByRegionDiv.innerHTML += `<div>Region ${index + 1}: $${sale}</div>`;
+        });
+
+        let totalSales = regionalSales.reduce((a, b) => a + b, 0);
+
+        const totalSalesDiv = document.getElementById('total-sales');
+        totalSalesDiv.innerHTML = `<div>Total Sales: $${totalSales}</div>`;
+    </script>
+</body>
+
+</html>
