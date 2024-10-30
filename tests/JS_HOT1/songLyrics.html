@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Lyrics</title>
+    <script>
+        function displayMessage() {
+            const userInput = document.getElementById('numberInput').value;
+            const messageElement = document.getElementById('message');
+            const number = parseInt(userInput);
+
+            if (isNaN(number)) {
+                messageElement.textContent = "Please enter a number, not a word.";
+            } else {
+                switch (number) {
+                    case 1:
+                        messageElement.textContent = "One is the loneliest number that you'll ever do.";
+                        break;
+                    case 2:
+                        messageElement.textContent = "Two can be as bad as one. It's the loneliest number since the number one.";
+                        break;
+                    case 3:
+                        messageElement.textContent = "There is no three.";
+                        break;
+                    default:
+                        messageElement.textContent = "You didn't enter a valid number.";
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Song Lyrics</h1>
+    <label for="numberInput">Enter a number (1-3):</label>
+    <input type="text" id="numberInput">
+    <button onclick="displayMessage()">Submit</button>
+    <p id="message"></p>
+</body>
+
+</html>

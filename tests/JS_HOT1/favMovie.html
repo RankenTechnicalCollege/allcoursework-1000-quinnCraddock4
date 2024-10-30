@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Movie List</title>
+</head>
+
+<body>
+    <h1>Favorite Movie List</h1>
+    <input type="text" id="movieInput" placeholder="Enter your favorite movie">
+    <button id="addMovieButton">Add Movie</button>
+    <div id="movieList"></div>
+
+    <script>
+        let favoriteMovies = ["The Martian", "The Matrix", "Interstellar"];
+
+        function displayMovies() {
+            const movieListDiv = document.getElementById('movieList');
+            movieListDiv.innerHTML = '';
+            for (let i = 0; i < favoriteMovies.length; i++) {
+                const movieItem = document.createElement('p');
+                movieItem.textContent = favoriteMovies[i];
+                movieListDiv.appendChild(movieItem);
+            }
+        }
+
+
+        document.getElementById('addMovieButton').addEventListener('click', function () {
+            const movieInput = document.getElementById('movieInput').value;
+            if (movieInput) {
+                favoriteMovies.push(movieInput);
+                displayMovies();
+                document.getElementById('movieInput').value = '';
+            }
+        });
+
+
+        displayMovies();
+    </script>
+</body>
+
+</html>

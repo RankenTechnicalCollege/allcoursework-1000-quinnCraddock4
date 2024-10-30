@@ -1,0 +1,1 @@
+console.log([...Array(100).keys()].map(n => n + 1).filter(n => n % 15 === 0));
