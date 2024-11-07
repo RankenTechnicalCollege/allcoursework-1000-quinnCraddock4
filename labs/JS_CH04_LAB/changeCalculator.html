@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Calculator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('makeChangeButton').addEventListener('click', makeChange);
+        });
+
+        function makeChange() {
+            const amount = parseInt(document.getElementById('amount').value);
+
+            if (isNaN(amount) || amount < 0 || amount > 99) {
+                alert('Please enter a valid number between 0 and 99.');
+                return;
+            }
+
+            let remainingAmount = amount;
+            const quarters = Math.floor(remainingAmount / 25);
+            remainingAmount %= 25;
+            const dimes = Math.floor(remainingAmount / 10);
+            remainingAmount %= 10;
+            const nickels = Math.floor(remainingAmount / 5);
+            remainingAmount %= 5;
+            const pennies = remainingAmount;
+
+            document.getElementById('quarters').value = quarters;
+            document.getElementById('dimes').value = dimes;
+            document.getElementById('nickels').value = nickels;
+            document.getElementById('pennies').value = pennies;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Change Calculator</h1>
+        <form>
+            <div class="mb-3">
+                <label for="amount" class="form-label">Amount (0-99):</label>
+                <input type="number" class="form-control" id="amount" name="amount">
+            </div>
+            <div class="mb-3">
+                <label for="quarters" class="form-label">Quarters:</label>
+                <output class="form-control" id="quarters" name="quarters" readonly></output>
+            </div>
+            <div class="mb-3">
+                <label for="dimes" class="form-label">Dimes:</label>
+                <output class="form-control" id="dimes" name="dimes" readonly></output>
+            </div>
+            <div class="mb-3">
+                <label for="nickels" class="form-label">Nickels:</label>
+                <output class="form-control" id="nickels" name="nickels" readonly></output>
+            </div>
+            <div class="mb-3">
+                <label for="pennies" class="form-label">Pennies:</label>
+                <output class="form-control" id="pennies" name="pennies" readonly></output>
+            </div>
+            <button type="button" class="btn btn-primary" id="makeChangeButton">Make Change</button>
+        </form>
+    </div>
+</body>
+
+</html>

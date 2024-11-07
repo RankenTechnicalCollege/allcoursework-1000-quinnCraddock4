@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Future Value Calculator</title>
+    <style>
+        input[readonly] {
+            background-color: #f0f0f0;
+        }
+    </style>
+    <script>
+        function calculateFutureValue() {
+            const investment = parseFloat(document.getElementById('investment').value);
+            const rate = parseFloat(document.getElementById('rate').value) / 100;
+            const years = parseInt(document.getElementById('years').value);
+
+            if (isNaN(investment) || investment <= 0) {
+                alert('Please enter a valid total investment.');
+                return;
+            }
+            if (isNaN(rate) || rate <= 0) {
+                alert('Please enter a valid annual interest rate.');
+                return;
+            }
+            if (isNaN(years) || years <= 0) {
+                alert('Please enter a valid number of years.');
+                return;
+            }
+
+            const futureValue = investment * Math.pow(1 + rate, years);
+
+            document.getElementById('futureValue').value = futureValue.toFixed(2);
+        }
+
+        function clearEntries() {
+            document.getElementById('investment').value = '';
+            document.getElementById('rate').value = '';
+            document.getElementById('years').value = '';
+            document.getElementById('futureValue').value = '';
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Future Value Calculator</h1>
+    <form>
+        <label for="investment">Total Investment:</label>
+        <input type="number" id="investment" name="investment"><br><br>
+        <label for="rate">Annual Interest Rate (%):</label>
+        <input type="number" id="rate" name="rate"><br><br>
+        <label for="years">Number of Years:</label>
+        <input type="number" id="years" name="years"><br><br>
+        <label for="futureValue">Future Value:</label>
+        <input type="text" id="futureValue" name="futureValue" readonly><br><br>
+        <button type="button" onclick="calculateFutureValue()">Calculate Future Value</button>
+        <button type="button" onclick="clearEntries()">Clear Entries</button>
+    </form>
+</body>
+
+</html>

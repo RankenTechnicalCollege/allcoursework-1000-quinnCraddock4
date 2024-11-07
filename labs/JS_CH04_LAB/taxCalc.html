@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Federal Income Tax Calculator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('calculateButton').addEventListener('click', calculateTax);
+        });
+
+        function calculateTax() {
+            const income = parseFloat(document.getElementById('income').value);
+
+            if (isNaN(income) || income < 0) {
+                alert('Please enter a valid non-negative taxable income.');
+                document.getElementById('income').focus();
+                return;
+            }
+
+            let taxOwed = 0;
+
+            if (income <= 9875) {
+                taxOwed = income * 0.10;
+            } else if (income <= 40125) {
+                taxOwed = 987.50 + (income - 9875) * 0.12;
+            } else if (income <= 85525) {
+                taxOwed = 4617.50 + (income - 40125) * 0.22;
+            } else if (income <= 163300) {
+                taxOwed = 14605.50 + (income - 85525) * 0.24;
+            } else if (income <= 207350) {
+                taxOwed = 33271.50 + (income - 163300) * 0.32;
+            } else if (income <= 518400) {
+                taxOwed = 47367.50 + (income - 207350) * 0.35;
+            } else {
+                taxOwed = 156235.00 + (income - 518400) * 0.37;
+            }
+
+            document.getElementById('taxOwed').value = taxOwed.toFixed(2);
+            document.getElementById('income').focus();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Federal Income Tax Calculator</h1>
+        <form>
+            <div class="mb-3">
+                <label for="income" class="form-label">Taxable Income:</label>
+                <input type="number" class="form-control" id="income" name="income">
+            </div>
+            <div class="mb-3">
+                <label for="taxOwed" class="form-label">Income Tax Owed:</label>
+                <output class="form-control" id="taxOwed" name="taxOwed" readonly></output>
+            </div>
+            <button type="button" class="btn btn-primary" id="calculateButton">Calculate Tax</button>
+        </form>
+    </div>
+</body>
+
+</html>

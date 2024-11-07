@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Miles Per Gallon Calculator</title>
+    <script>
+        function calculateMPG() {
+
+            const miles = parseFloat(document.getElementById('miles').value);
+            const gallons = parseFloat(document.getElementById('gallons').value);
+
+
+            if (isNaN(miles) || miles <= 0) {
+                alert('Please enter a valid number of miles.');
+                return;
+            }
+            if (isNaN(gallons) || gallons <= 0) {
+                alert('Please enter a valid number of gallons.');
+                return;
+            }
+
+            const mpg = miles / gallons;
+            document.getElementById('mpg').value = mpg.toFixed(2);
+        }
+
+        function clearEntries() {
+            document.getElementById('miles').value = '';
+            document.getElementById('gallons').value = '';
+            document.getElementById('mpg').value = '';
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Miles Per Gallon Calculator</h1>
+    <form>
+        <label for="miles">Miles Driven:</label>
+        <input type="number" id="miles" name="miles"><br><br>
+        <label for="gallons">Gallons of Gas Used:</label>
+        <input type="number" id="gallons" name="gallons"><br><br>
+        <label for="mpg">Miles Per Gallon:</label>
+        <input type="text" id="mpg" name="mpg" readonly><br><br>
+        <button type="button" onclick="calculateMPG()">Calculate MPG</button>
+        <button type="button" onclick="clearEntries()">Clear Entries</button>
+    </form>
+</body>
+
+</html>

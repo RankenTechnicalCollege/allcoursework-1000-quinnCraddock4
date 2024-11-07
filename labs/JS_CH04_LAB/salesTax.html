@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Tax Calculator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('calculateButton').addEventListener('click', calculateTax);
+            document.getElementById('clearButton').addEventListener('click', clearForm);
+            document.getElementById('subtotal').addEventListener('focus', clearField);
+            document.getElementById('taxRate').addEventListener('focus', clearField);
+            document.getElementById('subtotal').focus();
+        });
+
+        function calculateTax() {
+            const subtotal = parseFloat(document.getElementById('subtotal').value);
+            const taxRate = parseFloat(document.getElementById('taxRate').value);
+
+            if (isNaN(subtotal) || subtotal <= 0 || subtotal >= 10000) {
+                alert('Subtotal must be greater than 0 and less than 10000.');
+                document.getElementById('subtotal').focus();
+                return;
+            }
+
+            if (isNaN(taxRate) || taxRate <= 0 || taxRate >= 12) {
+                alert('Tax Rate must be greater than 0 and less than 12.');
+                document.getElementById('taxRate').focus();
+                return;
+            }
+
+            const salesTax = subtotal * (taxRate / 100);
+            const total = subtotal + salesTax;
+
+            document.getElementById('salesTax').value = salesTax.toFixed(2);
+            document.getElementById('total').value = total.toFixed(2);
+            document.getElementById('subtotal').focus();
+        }
+
+        function clearForm() {
+            document.getElementById('subtotal').value = '';
+            document.getElementById('taxRate').value = '';
+            document.getElementById('salesTax').value = '';
+            document.getElementById('total').value = '';
+            document.getElementById('subtotal').focus();
+        }
+
+        function clearField(event) {
+            event.target.value = '';
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Sales Tax Calculator</h1>
+        <form>
+            <div class="mb-3">
+                <label for="subtotal" class="form-label">Subtotal:</label>
+                <input type="number" class="form-control" id="subtotal" name="subtotal">
+            </div>
+            <div class="mb-3">
+                <label for="taxRate" class="form-label">Tax Rate (%):</label>
+                <input type="number" class="form-control" id="taxRate" name="taxRate">
+            </div>
+            <div class="mb-3">
+                <label for="salesTax" class="form-label">Sales Tax:</label>
+                <output class="form-control" id="salesTax" name="salesTax" readonly></output>
+            </div>
+            <div class="mb-3">
+                <label for="total" class="form-label">Total:</label>
+                <output class="form-control" id="total" name="total" readonly></output>
+            </div>
+            <button type="button" class="btn btn-primary" id="calculateButton">Calculate</button>
+            <button type="button" class="btn btn-secondary" id="clearButton">Clear</button>
+        </form>
+    </div>
+</body>
+
+</html>
