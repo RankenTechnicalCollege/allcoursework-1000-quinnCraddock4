@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
    <!--
       JavaScript
@@ -7,13 +8,14 @@
       Author: 
       Date:   
 
-      Filename: index.htm
+      Filename: index.html
    -->
    <meta charset="utf-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
    <title>Hands-on Project 7-3</title>
    <link rel="stylesheet" href="styles.css" />
    <script src="modernizr.custom.05819.js"></script>
+
 </head>
 
 <body>
@@ -34,7 +36,7 @@
          <label for="item3">Enter The Gungeon ($13.49)</label>
          <input type="checkbox" id="item4" value="499" />
          <label for="item4">Hover Junkers ($4.99)</label>
-         <input type="checkbox" id="item5" value="599" />
+         <input type="checkbox" id="item5" value="899" />
          <label for="item5">Good Robot ($8.99)</label>
          <input type="button" value="Calculate" id="sButton" />
       </form>
@@ -53,38 +55,58 @@
                <td>0.00</td>
             </tr>
             <tr>
-               <td>Total with tax</td>
+               <td>Total with Tax</td>
                <td>$0.00</td>
             </tr>
          </tbody>
       </table>
+      <p>Date: <span id="date"></span></p>
    </article>
-   <script>
-	  "use strict";
-	  // function to add values of selected check boxes and display total
-      function calcTotal() {
-         
-         var itemTotal = 0;
-         var tax = 0;
-         var totalWithTax = 0;
-         items = document.getElementsByTagName("input");
-         var cells = document.getElementsByTagName("td");
-         for (var i = 0; i < 3; i++) {
-            if (items[i].checked) {
-               itemTotal += (items[i].value * 1);
-            }
-         }
-         tax = itemTotal * 0.1;
-         totalWithTax = itemTotal + taxTotal;
-         cells[1].innerHTML = (itemTotal / 100).toFixed(2);
-         cells[3].innerHTML = (tax / 100).toFixed(2);
-         cells[5].innerHTML = "$" + (totalWithTax / 100).toFixed(2);
-      }
-      
-      // add event listener to Submit button
-      var submitButton = document.getElementById("sButton");
-      submitButton.addEventListener("click, calcTotal); 
-    
-   </script>
 </body>
+<script>
+   // pretending im using jquery
+   function $(id) {
+      return document.getElementById(id);
+   }
+
+
+   function calcTotal(event) {
+      event.preventDefault();
+
+      let itemTotal = 0;
+      let items = document.querySelectorAll('input[type="checkbox"]:checked');
+      let cells = document.querySelectorAll('td');
+
+      items.forEach(item => {
+         itemTotal += parseFloat(item.value) / 100;
+      });
+
+      let tax = itemTotal * 0.05;
+      let totalWithTax = itemTotal + tax;
+
+      cells[1].textContent = itemTotal.toFixed(2);
+      cells[3].textContent = tax.toFixed(2);
+      cells[5].textContent = "$" + totalWithTax.toFixed(2);
+
+      // Clear checkbox selections
+      items.forEach(item => {
+         item.checked = false;
+      });
+   }
+
+
+   function displayDate() {
+      const today = new Date();
+      const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+      const formattedDate = today.toLocaleDateString('en-US', options);
+      $('date').textContent = formattedDate;
+   }
+
+
+   window.onload = function () {
+      $('sButton').addEventListener('click', calcTotal);
+      displayDate();
+   };
+</script>
+
 </html>
