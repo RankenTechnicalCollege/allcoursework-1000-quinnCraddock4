@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Account</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#registerForm").submit(function (event) {
+                event.preventDefault();
+                alert("Form submitted!");
+            });
+
+            $("#resetButton").click(function () {
+                $("#registerForm")[0].reset();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <main>
+        <h1>Register Account</h1>
+        <form id="registerForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="phone">Mobile Phone:</label>
+            <input type="tel" id="phone" name="phone" required><br><br>
+
+            <label for="country">Country:</label>
+            <select id="country" name="country" required>
+                <option value="usa">USA</option>
+                <option value="canada">Canada</option>
+                <option value="uk">UK</option>
+                <option value="australia">Australia</option>
+                <option value="other">Other</option>
+            </select><br><br>
+
+            <label>Contact me by:</label>
+            <input type="radio" id="contactEmail" name="contact" value="email" required>
+            <label for="contactEmail">Email</label>
+            <input type="radio" id="contactText" name="contact" value="text">
+            <label for="contactText">Text</label>
+            <input type="radio" id="contactPhone" name="contact" value="phone">
+            <label for="contactPhone">Mobile Phone</label>
+            <input type="radio" id="noContact" name="contact" value="noContact">
+            <label for="noContact">Don't contact me</label><br><br>
+
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I agree to the terms of service</label><br><br>
+
+            <label for="comments">Comments:</label><br>
+            <textarea id="comments" name="comments" rows="4" cols="50"></textarea><br><br>
+
+            <button type="submit">Register</button>
+            <button type="button" id="resetButton">Reset</button>
+        </form>
+    </main>
+</body>
+
+</html>

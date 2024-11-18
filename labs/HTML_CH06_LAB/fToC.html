@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Temperature Converter</h1>
+    </header>
+    <main>
+        <form id="tempConverterForm">
+            <label>
+                <input type="radio" name="conversion" value="fToC" checked> Fahrenheit to Celsius
+            </label>
+            <label>
+                <input type="radio" name="conversion" value="cToF"> Celsius to Fahrenheit
+            </label>
+            <br><br>
+            <label id="inputLabel" for="temperature">Enter Fahrenheit temperature:</label>
+            <input type="text" id="temperature">
+            <br><br>
+            <label id="convertedLabel" for="convertedTemperature">Degrees Celsius:</label>
+            <input type="text" id="convertedTemperature" disabled>
+            <br><br>
+            <button type="button" id="convertButton">Convert</button>
+            <br><br>
+            <p id="errorMessage" class="error"></p>
+        </form>
+    </main>
+    <script>
+        $(document).ready(function () {
+            $('input[name="conversion"]').change(function () {
+                if ($(this).val() == 'fToC') {
+                    $('#inputLabel').text('Enter Fahrenheit temperature:');
+                    $('#convertedLabel').text('Degrees Celsius:');
+                } else {
+                    $('#inputLabel').text('Enter Celsius temperature:');
+                    $('#convertedLabel').text('Degrees Fahrenheit:');
+                }
+                $('#errorMessage').text('');
+                $('#temperature').val('');
+                $('#convertedTemperature').val('');
+            });
+
+            $('#convertButton').click(function () {
+                var temp = $('#temperature').val();
+                var conversionType = $('input[name="conversion"]:checked').val();
+                var result;
+
+                if (isNaN(temp) || temp.trim() === "") {
+                    $('#errorMessage').text('Please enter a valid number.');
+                    $('#convertedTemperature').val('');
+                } else {
+                    $('#errorMessage').text('');
+                    if (conversionType == 'fToC') {
+                        result = (temp - 32) * 5 / 9;
+                        $('#convertedLabel').text('Degrees Celsius:');
+                    } else {
+                        result = (temp * 9 / 5) + 32;
+                        $('#convertedLabel').text('Degrees Fahrenheit:');
+                    }
+                    $('#convertedTemperature').val(result.toFixed(2));
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
