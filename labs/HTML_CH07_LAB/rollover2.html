@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rollover Application</title>
+    <style>
+        ul {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Fishing Images</h1>
+    <p>Move your mouse over an image to change it and back out of the image to restore the original image.</p>
+    <p>
+        <img id="image1" src="hero.jpg" alt="Hero">
+        <img id="image2" src="bison.jpg" alt="Bison">
+    </p>
+    <script>
+        window.onload = function () {
+            // Preload images
+            var image1 = new Image();
+            var image2 = new Image();
+            image1.src = "release.jpg";
+            image2.src = "deer.jpg";
+
+            // Get image elements
+            var img1 = document.getElementById("image1");
+            var img2 = document.getElementById("image2");
+
+            // Add event listeners for rollover effect
+            img1.onmouseover = function () {
+                img1.src = "release.jpg";
+            };
+            img1.onmouseout = function () {
+                img1.src = "hero.jpg";
+            };
+
+            img2.onmouseover = function () {
+                img2.src = "deer.jpg";
+            };
+            img2.onmouseout = function () {
+                img2.src = "bison.jpg";
+            };
+
+            // Timer to change images after 1 second
+            setTimeout(function () {
+                img1.src = "release.jpg";
+                img2.src = "deer.jpg";
+            }, 1000);
+
+            // Timer to revert images after 2 seconds
+            setTimeout(function () {
+                img1.src = "hero.jpg";
+                img2.src = "bison.jpg";
+            }, 2000);
+        };
+    </script>
+</body>
+
+</html>

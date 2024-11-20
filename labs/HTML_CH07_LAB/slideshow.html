@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fishing Slide Show</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #slideshow {
+            position: relative;
+            width: 600px;
+            height: 400px;
+        }
+
+        #slideshow img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        #slideshow img:first-child {
+            display: block;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Fishing Slide Show</h1>
+    <div class="button-container">
+        <button id="startButton">Start</button>
+        <button id="pauseButton" disabled>Pause</button>
+    </div>
+    <div id="slideshow">
+        <img src="hero.jpg" alt="Hero">
+        <img src="release.jpg" alt="Release">
+        <img src="deer.jpg" alt="Deer">
+        <img src="bison.jpg" alt="Bison">
+    </div>
+    <script>
+        var imageCache = [];
+        var imageCounter = 0;
+        var timer = null;
+
+        function runSlideShow() {
+            imageCache[imageCounter].style.display = "none";
+            imageCounter = (imageCounter + 1) % imageCache.length;
+            imageCache[imageCounter].style.display = "block";
+        }
+
+        window.onload = function () {
+            var slideshow = document.getElementById("slideshow");
+            var images = slideshow.getElementsByTagName("img");
+
+            for (var i = 0; i < images.length; i++) {
+                imageCache.push(images[i]);
+            }
+
+            document.getElementById("startButton").onclick = function () {
+                runSlideShow();
+                timer = setInterval(runSlideShow, 2000);
+                this.disabled = true;
+                document.getElementById("pauseButton").disabled = false;
+            };
+
+            document.getElementById("pauseButton").onclick = function () {
+                clearInterval(timer);
+                timer = null;
+                this.disabled = true;
+                document.getElementById("startButton").disabled = false;
+            };
+        };
+    </script>
+</body>
+
+</html>

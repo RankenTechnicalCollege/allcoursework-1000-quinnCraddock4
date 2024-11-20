@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rollover Application</title>
+    <style>
+        ul {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Fishing Images</h1>
+    <p>Move your mouse over an image to change it and back out of the image to restore the original image.</p>
+    <p>
+        <img id="image1" src="hero.jpg" alt="Hero">
+        <img id="image2" src="bison.jpg" alt="Bison">
+    </p>
+    <script>
+        window.onload = function () {
+            var links = document.querySelectorAll("ul li a");
+            var images = [];
+            for (var i = 0; i < links.length; i++) {
+                images[i] = new Image();
+                images[i].src = links[i].href;
+            }
+
+            var image1 = document.getElementById("image1");
+            var image2 = document.getElementById("image2");
+
+            image1.onmouseover = function () {
+                image1.src = "release.jpg";
+            };
+            image1.onmouseout = function () {
+                image1.src = "hero.jpg";
+            };
+
+            image2.onmouseover = function () {
+                image2.src = "deer.jpg";
+            };
+            image2.onmouseout = function () {
+                image2.src = "bison.jpg";
+            };
+        };
+    </script>
+</body>
+
+</html>
