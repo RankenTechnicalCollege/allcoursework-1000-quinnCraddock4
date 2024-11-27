@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .links {
+            margin-bottom: 20px;
+        }
+
+        .links a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .links a.active {
+            font-weight: bold;
+            color: #0056b3;
+        }
+
+        .image-container {
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .caption {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gallery">
+        <div class="links">
+            <a href="bison.jpg" title="Caption for image 1">Image 1</a>
+            <a href="deer.jpg" title="Caption for image 2">Image 2</a>
+            <a href="hero.jpg" title="Caption for image 3">Image 3</a>
+        </div>
+        <div class="image-container">
+            <img src="" alt="Gallery Image" id="gallery-image">
+            <div class="caption" id="image-caption"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(() => {
+            const links = $('.links a');
+            const galleryImage = $('#gallery-image');
+            const imageCaption = $('#image-caption');
+
+            // Preload images
+            links.each(function () {
+                const img = new Image();
+                img.src = $(this).attr('href');
+            });
+
+            // Attach click event listeners
+            links.on('click', function (event) {
+                event.preventDefault();
+                const href = $(this).attr('href');
+                const title = $(this).attr('title');
+                galleryImage.attr('src', href);
+                imageCaption.text(title);
+                links.removeClass('active');
+                $(this).addClass('active');
+            });
+
+            // Keyboard support
+            links.first().focus();
+            $(document).on('keydown', function (event) {
+                const activeLink = $('.links a.active');
+                if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+                    event.preventDefault();
+                    const nextLink = activeLink.next('a');
+                    if (nextLink.length) {
+                        nextLink.click().focus();
+                    } else {
+                        links.first().click().focus();
+                    }
+                } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+                    event.preventDefault();
+                    const prevLink = activeLink.prev('a');
+                    if (prevLink.length) {
+                        prevLink.click().focus();
+                    } else {
+                        links.last().click().focus();
+                    }
+                }
+            });
+
+            // Initialize the gallery with the first image
+            links.first().click();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expand/Collapse Application</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topic">
+        <div class="part1">This is the first part of topic 1.</div>
+        <div class="part2 hidden">This is the remainder of topic 1.</div>
+        <a href="#" class="toggle-link">Show more</a>
+    </div>
+    <div class="topic">
+        <div class="part1">This is the first part of topic 2.</div>
+        <div class="part2 hidden">This is the remainder of topic 2.</div>
+        <a href="#" class="toggle-link">Show more</a>
+    </div>
+    <div class="topic">
+        <div class="part1">This is the first part of topic 3.</div>
+        <div class="part2 hidden">This is the remainder of topic 3.</div>
+        <a href="#" class="toggle-link">Show more</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(() => {
+            $('.toggle-link').on('click', function (event) {
+                event.preventDefault();
+                const part2 = $(this).siblings('.part2');
+                if (part2.hasClass('hidden')) {
+                    part2.removeClass('hidden');
+                    $(this).text('Show less');
+                } else {
+                    part2.addClass('hidden');
+                    $(this).text('Show more');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
